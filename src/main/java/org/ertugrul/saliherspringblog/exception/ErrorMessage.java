@@ -1,4 +1,4 @@
-package org.ertugrul.movieapp.exception;
+package org.ertugrul.saliherspringblog.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

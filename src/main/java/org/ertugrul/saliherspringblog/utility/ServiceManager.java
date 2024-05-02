@@ -1,4 +1,4 @@
-package org.ertugrul.movieapp.utility;
+package org.ertugrul.saliherspringblog.utility;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;

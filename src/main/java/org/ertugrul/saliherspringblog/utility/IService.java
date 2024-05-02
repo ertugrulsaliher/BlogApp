@@ -1,4 +1,4 @@
-package org.ertugrul.movieapp.utility;
+package org.ertugrul.saliherspringblog.utility;
 
 import java.util.List;
 import java.util.Optional;

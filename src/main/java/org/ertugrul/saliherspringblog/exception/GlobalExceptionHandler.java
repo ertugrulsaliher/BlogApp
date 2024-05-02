@@ -1,4 +1,4 @@
-package org.ertugrul.movieapp.exception;
+package org.ertugrul.saliherspringblog.exception;
 //Tüm Controller sınıfları için merkezi bir şekidle hata yönetimni sağlayacaktır.
 
 
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
 
-    @ExceptionHandler(MovieAppException.class)
-    public ResponseEntity<ErrorMessage> handleDemoExeption(MovieAppException demoExeption) {
+    @ExceptionHandler(BlogAppException.class)
+    public ResponseEntity<ErrorMessage> handleDemoExeption(BlogAppException demoExeption) {
         ErrorType errorType = demoExeption.getErrorType();
 
         return new ResponseEntity(createErrorMesseahe(demoExeption),errorType.getHttpStatus());
     }
 
-    private ErrorMessage createErrorMesseahe( MovieAppException demoExeption) {
+    private ErrorMessage createErrorMesseahe( BlogAppException demoExeption) {
         return ErrorMessage.builder().code(demoExeption.getErrorType().getCode()).message(demoExeption.getMessage()).build();
     }
 

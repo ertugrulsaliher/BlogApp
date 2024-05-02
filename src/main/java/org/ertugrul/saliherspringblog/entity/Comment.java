@@ -6,29 +6,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "tbluser")
-public class User {
+@Table(name = "tblcomment")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String name;
-    String surname;
-    String email;
-    String password;
+    String content;
 
-    @OneToMany(mappedBy = "user")
-    List<Post> posts;
-    @OneToMany(mappedBy = "user")
-    List<Comment> comments;
+    @ManyToOne
+    User user;
+
+    @ManyToOne
+    Post post;
+
 
     @Embedded
     BaseEntity baseEntity;
-
 }
