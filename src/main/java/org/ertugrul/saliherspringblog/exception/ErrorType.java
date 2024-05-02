@@ -14,7 +14,8 @@ public enum ErrorType {
     CATEGORY_IS_ALREADY_EXIST(5005,"Kategori databesede zaten var", HttpStatus.CONFLICT),
     THERE_IS_NO_CATEGORY_IN_THE_DATABASE(5006,"DatabaseDe kategorti yok", HttpStatus.NOT_FOUND),
     CATEGORY_NOT_FOUND(5007,"Kategori yok", HttpStatus.NOT_FOUND),
-    THERE_IS_NO_POST_IN_THE_DATABASE(5008,"Post yok", HttpStatus.NOT_FOUND);
+    THERE_IS_NO_POST_IN_THE_DATABASE(5008,"Post yok", HttpStatus.NOT_FOUND),
+    USER_NOT_FOUND(5009,"User bulunamadı", HttpStatus.NOT_FOUND);
 
     private Integer code;
     private String message;

@@ -7,11 +7,11 @@ import org.ertugrul.saliherspringblog.exception.BlogAppException;
 import org.ertugrul.saliherspringblog.mapper.CategoryMapper;
 import org.ertugrul.saliherspringblog.repository.CategoryRepository;
 import org.ertugrul.saliherspringblog.utility.ServiceManager;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.ertugrul.saliherspringblog.exception.ErrorType.*;
 
@@ -48,4 +48,19 @@ public class CategoryService extends ServiceManager<Category,Long> {
 
         return categoryResponseDTOS;
     }
+
+    public List<Category> getCategories(List<Long> categoryids) {
+        List<Category> categories = new ArrayList<>();
+        categoryids.forEach(categoryId -> {
+            Optional<Category> findedCategory = findById(categoryId);
+            if(!(findedCategory.isPresent())){
+                throw new BlogAppException(CATEGORY_NOT_FOUND);
+            }else{
+                categories.add(findedCategory.get());
+            }
+        });
+        return categories;
+
+    }
+
 }

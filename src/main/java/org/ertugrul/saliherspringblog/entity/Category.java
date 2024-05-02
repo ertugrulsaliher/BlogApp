@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,8 +22,7 @@ public class Category {
     String description;
 
 
-    @ManyToMany
-    List<Post> posts;
+
 
 
     @Embedded

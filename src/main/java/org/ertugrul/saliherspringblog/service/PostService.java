@@ -1,20 +1,16 @@
 package org.ertugrul.saliherspringblog.service;
 
-import lombok.RequiredArgsConstructor;
 import org.ertugrul.saliherspringblog.dto.requestDto.PostSaveDTO;
 import org.ertugrul.saliherspringblog.dto.responseDto.PostResponseDTO;
-import org.ertugrul.saliherspringblog.entity.Category;
 import org.ertugrul.saliherspringblog.entity.Post;
 import org.ertugrul.saliherspringblog.exception.BlogAppException;
 import org.ertugrul.saliherspringblog.mapper.PostMapper;
 import org.ertugrul.saliherspringblog.repository.PostRepository;
 import org.ertugrul.saliherspringblog.utility.ServiceManager;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.ertugrul.saliherspringblog.exception.ErrorType.*;
 
@@ -23,29 +19,29 @@ import static org.ertugrul.saliherspringblog.exception.ErrorType.*;
 public class PostService extends ServiceManager<Post,Long> {
     private final PostRepository postRepository;
     private final CategoryService categoryService;
-    public PostService(PostRepository postRepository, CategoryService categoryService) {
+    private final UserService userService;
+    public PostService(PostRepository postRepository, CategoryService categoryService, UserService userService) {
         super(postRepository);
         this.postRepository = postRepository;
         this.categoryService = categoryService;
+        this.userService = userService;
     }
 
     public PostResponseDTO saveDTO(PostSaveDTO postSaveDTO) {
-        postSaveDTO.categoryid().forEach(categoryId -> {
-            if(!(checkCategory(categoryId))){
-                throw new BlogAppException(CATEGORY_NOT_FOUND);
-            }
-        });
 
 
-        Post savedPost = save(PostMapper.INSTANCE.postSaveDtoToPost(postSaveDTO));
+
+        Post savedPost = save(Post.builder()
+                .user(userService.findById(postSaveDTO.userid()).orElseThrow(()-> new BlogAppException(USER_NOT_FOUND)))
+                .title(postSaveDTO.title())
+                .content(postSaveDTO.content())
+                .category(categoryService.getCategories(postSaveDTO.categoryids()))
+                .build());
 
         return PostMapper.INSTANCE.postToPostResponseDTO(savedPost);
 
     }
-    private boolean checkCategory(Long id){
-        Optional<Category> findedCategory = categoryService.findById(id);
-        return findedCategory.isPresent();
-    }
+
 
     public List<PostResponseDTO> findAllDTO() {
         List<PostResponseDTO> postResponseDTOList = new ArrayList<>();

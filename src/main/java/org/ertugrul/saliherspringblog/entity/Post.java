@@ -25,11 +25,16 @@ public class Post {
     @ManyToOne
     User user;
 
-    @ManyToMany (mappedBy = "posts")
-    List<Category> categories;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "tblpost-category",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    List<Category> category;
 
     @OneToMany(mappedBy = "post")
-    List<Comment> comments;
+    List<Comment> comment;
 
 
     @Embedded

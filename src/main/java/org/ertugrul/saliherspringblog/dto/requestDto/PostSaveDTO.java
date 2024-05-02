@@ -6,5 +6,5 @@ public record PostSaveDTO(
         Long userid,
         String title,
         String content,
-        List<Long> categoryid) {
+        List<Long> categoryids) {
 }
