@@ -16,7 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findAllByContentContainsIgnoreCase(String aramaKelimesi);
 
-
+    List<Post> findAllByOrderByBaseEntity_createdAtDesc();
 
 
 }

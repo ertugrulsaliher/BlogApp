@@ -37,6 +37,10 @@ public class CategoryController {
         return ResponseEntity.ok(CategoryMapper.INSTANCE.categoryToCategoryResponseDetailedDTO(categoryService.findById(categoryid).orElseThrow(()->new BlogAppException(ErrorType.CATEGORY_NOT_FOUND))));
     }
 
+    @GetMapping("/findByCategoryName")
+    public ResponseEntity<List<CategoryResponseDetailedDTO>> findByCategoryName(@RequestParam String categoryName){
+        return ResponseEntity.ok(categoryService.findByCategoryName(categoryName));
+    }
 
 
 

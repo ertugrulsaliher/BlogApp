@@ -52,9 +52,13 @@ public class PostController {
         return ResponseEntity.ok(postService.findByCategoryId(categoryid));
     }
 
-    @GetMapping("/")
+    @GetMapping("/search")
     public ResponseEntity<List<PostResponseOnlyPostsDTO>> findBycontent(@RequestParam("search") String aramaKelimesi){
         return ResponseEntity.ok(postService.findebycontent(aramaKelimesi));
+    }
+    @GetMapping("/publishedAt")
+    public ResponseEntity<List<PostResponseOnlyPostsDTO>> findAllOrderByPublishedAt(){
+        return ResponseEntity.ok(postService.findAllOrderByPublishedAt());
     }
 
 

@@ -63,4 +63,17 @@ public class CategoryService extends ServiceManager<Category,Long> {
 
     }
 
+    public List<CategoryResponseDetailedDTO> findByCategoryName(String categoryName) {
+        List<CategoryResponseDetailedDTO> categoryResponseDetailedDTOS = new ArrayList<>();
+        List<Category> allByOrderByNameAsc = categoryRepository.findByNameContainsIgnoreCaseOrderByNameAsc(categoryName);
+        if(allByOrderByNameAsc.isEmpty()){
+            throw new BlogAppException(THERE_IS_NO_CATEGORY_IN_THE_DATABASE);
+        }
+        allByOrderByNameAsc.forEach(category -> {
+            categoryResponseDetailedDTOS.add(CategoryMapper.INSTANCE.categoryToCategoryResponseDetailedDTO(category));
+        });
+        return categoryResponseDetailedDTOS;
+
+
+    }
 }

@@ -108,4 +108,19 @@ public class PostService extends ServiceManager<Post,Long> {
         });
         return postResponseDetailedDTOList;
     }
+
+    public List<PostResponseOnlyPostsDTO> findAllOrderByPublishedAt() {
+        List<PostResponseOnlyPostsDTO> postResponseDetailedDTOList = new ArrayList<>();
+
+        List<Post> allOrOrderByCreateDateDesc = postRepository.findAllByOrderByBaseEntity_createdAtDesc();
+        if(allOrOrderByCreateDateDesc.isEmpty()){
+            throw new BlogAppException(THERE_IS_NO_POST_IN_THE_DATABASE);
+        }
+
+        allOrOrderByCreateDateDesc.forEach(post -> {
+            postResponseDetailedDTOList.add(PostMapper.INSTANCE.postToPostResponseOnlyPostsDTO(post));
+        });
+        return postResponseDetailedDTOList;
+
+    }
 }
