@@ -1,5 +1,6 @@
 package org.ertugrul.saliherspringblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,6 +33,7 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     List<Category> category;
+
 
     @OneToMany(mappedBy = "post")
     List<Comment> comment;

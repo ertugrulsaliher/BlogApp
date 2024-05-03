@@ -15,7 +15,12 @@ public enum ErrorType {
     THERE_IS_NO_CATEGORY_IN_THE_DATABASE(5006,"DatabaseDe kategorti yok", HttpStatus.NOT_FOUND),
     CATEGORY_NOT_FOUND(5007,"Kategori yok", HttpStatus.NOT_FOUND),
     THERE_IS_NO_POST_IN_THE_DATABASE(5008,"Post yok", HttpStatus.NOT_FOUND),
-    USER_NOT_FOUND(5009,"User bulunamadı", HttpStatus.NOT_FOUND);
+    USER_NOT_FOUND(5009,"User bulunamadı", HttpStatus.NOT_FOUND),
+    POST_NOT_FOUND(5010,"Post yok", HttpStatus.NOT_FOUND),
+    THERE_IS_NO_COMMENT_IN_THE_DATABASE(5011,"Comment yok", HttpStatus.NOT_FOUND),
+    USER_DID_NOT_POST(5012,"userın postu yok", HttpStatus.NOT_FOUND),
+    CATEGORY_HAS_NOT_POST(5013,"Categoride post yok", HttpStatus.NOT_FOUND),
+    NO_RESULT(5014,"sonuç bulunamadı", HttpStatus.NOT_FOUND);
 
     private Integer code;
     private String message;
