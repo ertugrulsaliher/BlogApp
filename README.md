@@ -4,7 +4,7 @@ This project contains a blog application developed by Salih Er. This application
 
 ## Technologies Used
 
-The Car Rental Application is built using the following technologies and frameworks:
+This project is built using the following technologies and frameworks:
 
 - Java: The core programming language used for application development.
 - Jakarta Persistence (JPA): A Java specification for managing persistence in Java applications.
