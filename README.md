@@ -1,4 +1,4 @@
-# Salih Er's Spring Blog Project
+# Blog App Project
 
 This project contains a blog application developed by Salih Er. This application provides a platform where users can register, publish articles, filter articles by categories, and make comments.
 
